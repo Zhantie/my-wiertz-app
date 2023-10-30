@@ -21,11 +21,9 @@ export function HomeScreen() {
 
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
-      
-    	
-      <XStack>
+      {/* <XStack>
         <Button {...linkProps}>Link to user</Button>
-      </XStack>
+      </XStack> */}
       <CardJobInfo />
     </YStack>
   )

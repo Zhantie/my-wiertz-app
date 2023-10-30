@@ -1,8 +1,9 @@
 import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack } from 'tamagui'
 
-import { View, Text, FlatList } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
-
+import { MapPin } from '@tamagui/lucide-icons'
+import { ListItem } from '@my/ui/src'
 
 type ItemProps = {
   id: string
@@ -12,7 +13,6 @@ type ItemProps = {
   Location: string
   distance: string
 }
-
 
 export function CardJobInfo() {
   const item: ItemProps = {
@@ -33,8 +33,8 @@ export function CardJobInfo() {
 export function DemoCard(props: CardProps & ItemProps) {
   const { id, image, title, companyName, Location, distance } = props
   return (
-    <Card elevate size="$4" bordered {...props}>
-      <View style={{ flex: 1, padding: 10 }}>
+    <Card size="$4" bordered {...props}>
+      <View style={{ padding: 10 }}>
         <YStack>
           {/* <Image source={image} /> */}
           <H4 style={{ fontSize: 26 }}>{title}</H4>
@@ -42,6 +42,10 @@ export function DemoCard(props: CardProps & ItemProps) {
             <Paragraph paddingHorizontal={2}>{companyName}</Paragraph>
             <Paragraph paddingHorizontal={2}>{Location}</Paragraph>
             <Paragraph paddingHorizontal={2}>{distance}</Paragraph>
+          </XStack>
+          <XStack>
+            <ListItem hoverTheme icon={MapPin} title="38 uur" />
+           
           </XStack>
         </YStack>
       </View>
