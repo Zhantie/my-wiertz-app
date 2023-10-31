@@ -20,7 +20,7 @@ export function HomeScreen() {
   })
 
   return (
-    <YStack f={1} jc="center" ai="center" p="$4" space>
+    <YStack f={1} jc="center" >
       {/* <XStack>
         <Button {...linkProps}>Link to user</Button>
       </XStack> */}
