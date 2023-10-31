@@ -1,14 +1,4 @@
-import {
-  Anchor,
-  Button,
-  H1,
-  Paragraph,
-  Separator,
-  Sheet,
-  useToastController,
-  XStack,
-  YStack,
-} from '@my/ui'
+import { Button, XStack, YStack, ScrollView } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { CardJobInfo } from 'app/components/cardJobInfo'
 import React, { useState } from 'react'
@@ -20,11 +10,13 @@ export function HomeScreen() {
   })
 
   return (
-    <YStack f={1} jc="center" >
+    <YStack f={1} justifyContent="center" alignItems="center" marginTop={30}>
       {/* <XStack>
         <Button {...linkProps}>Link to user</Button>
       </XStack> */}
-      <CardJobInfo />
+      <ScrollView space>
+        <CardJobInfo />
+      </ScrollView>
     </YStack>
   )
 }

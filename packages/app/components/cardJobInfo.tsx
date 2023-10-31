@@ -1,15 +1,15 @@
 import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack, Text } from 'tamagui'
 import { Dimensions } from 'react-native'
 import KLMImage from './images/KLM.png'
+import { Platform } from 'react-native'
 
 import { FlatList, View } from 'react-native'
-import React from 'react'
-import { Cloud, MapPin, MapPinOff, Moon, Star, Sun } from '@tamagui/lucide-icons'
+import React,  { useState }  from 'react'
+import { Cloud, MapPin, MapPinOff, Moon, Heart, Sun } from '@tamagui/lucide-icons'
 import { ListItem, YGroup } from '@my/ui/src'
 
 type ItemProps = {
   id: string
-  image: any
   title: string
   companyName: string
   Location: string
@@ -19,7 +19,6 @@ type ItemProps = {
 export function CardJobInfo() {
   const item: ItemProps = {
     id: '1',
-    image: './images/KLM.png',
     title: 'Logistiek medewerker Postponement',
     companyName: 'KLM',
     Location: 'Maastricht',
@@ -33,11 +32,28 @@ export function CardJobInfo() {
 }
 
 export function DemoCard(props: CardProps & ItemProps) {
-  const { id, image, title, companyName, Location, distance } = props
+  const { id, title, companyName, Location, distance } = props
+  const [isLiked, setIsLiked] = useState(false);
 
-  console.log(image);
+  const handlePress = () => {
+    setIsLiked(!isLiked);
+  };
+
   return (
-    <Card borderRadius={0} padding={10} bordered backgroundColor={'grey'}>
+    <Card borderRadius={0} padding={10} bordered position="relative">
+      {Platform.OS === 'android' || Platform.OS === 'ios' ? (
+        <Button
+          borderRadius={0}
+          backgroundColor=""	
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+          }}
+          icon={<Heart size={22} color="#EB7002" />}
+          
+        ></Button>
+      ) : null}
       <YStack>
         <XStack>
           <Image source={KLMImage} />
