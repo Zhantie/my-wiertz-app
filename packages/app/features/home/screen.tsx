@@ -4,6 +4,7 @@ import { CardJobInfo } from 'app/components/cardJobInfo'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
 
+
 export function HomeScreen() {
   const linkProps = useLink({
     href: '/user/nate',
@@ -14,9 +15,9 @@ export function HomeScreen() {
       {/* <XStack>
         <Button {...linkProps}>Link to user</Button>
       </XStack> */}
-      <ScrollView space>
-        <CardJobInfo />
-      </ScrollView>
+      
+      <CardJobInfo />
+      
     </YStack>
   )
 }
