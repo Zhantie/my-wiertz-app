@@ -1,145 +1,73 @@
-import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack, Text } from 'tamagui'
-import { Dimensions, ScrollView } from 'react-native'
-import KLMImage from './images/KLM.png'
+import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack } from 'tamagui'
+import { ScrollView } from 'react-native'
+
 import { Platform } from 'react-native'
 
-import { FlatList, View } from 'react-native'
-import React, { useState } from 'react'
-import { Cloud, MapPin, MapPinOff, Heart, Moon, Sun, X } from '@tamagui/lucide-icons'
-import { ListItem, Stack, YGroup } from '@my/ui/src'
+import { FlatList } from 'react-native'
+import React from 'react'
+import { Heart, Euro, Clock, GraduationCap } from '@tamagui/lucide-icons'
+import { Stack } from '@my/ui/src'
 
 const DATA = [
   {
     id: '1',
     title: 'Logistiek medewerker Postponement',
+    imageLogo: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas',
     companyName: 'KLM',
     Location: 'Maastricht',
     distance: '3,7 km',
     categories: [
       {
         name: '2.654,- per maand',
-        icon: <Heart size={20} />,
+        icon: <Euro size={20} />,
       },
       {
         name: '38 uur',
-        icon: <Heart size={20} />,
+        icon: <Clock size={20} />,
       },
       {
         name: 'MBO',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={20} />,
+        icon: <GraduationCap size={20} />,
       },
     ],
   },
   {
     id: '2',
-    title: 'Logistiek medewerker Postponement',
-    companyName: 'KLM',
+    title: 'Maaltijdbezorger fiets',
+    imageLogo: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas',
+    companyName: 'Flink',
     Location: 'Maastricht',
-    distance: '3,7 km',
+    distance: '5.2 km',
     categories: [
       {
-        name: '2.654,- per maand',
-        icon: <Heart size={20} />,
+        name: '2.400,- per maand',
+        icon: <Euro size={20} />,
       },
       {
-        name: '38 uur',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={20} />,
+        name: '36 uur',
+        icon: <Clock size={20} />,
       },
     ],
   },
   {
     id: '3',
-    title: 'Logistiek medewerker Postponement',
-    companyName: 'KLM',
+    title: 'Customer Service Manager',
+    imageLogo: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas',
+    companyName: 'HelloFresh',
     Location: 'Maastricht',
-    distance: '3,7 km',
+    distance: '2.1 km',
     categories: [
       {
-        name: '2.654,- per maand',
-        icon: <Heart size={20} />,
+        name: '2.730,- per maand',
+        icon: <Euro size={20} />,
       },
       {
         name: '38 uur',
-        icon: <Heart size={20} />,
+        icon: <Clock size={20} />,
       },
       {
-        name: 'MBO',
-        icon: <Heart size={20} />,
-      },
-    ],
-  },
-  {
-    id: '4',
-    title: 'Logistiek medewerker Postponement',
-    companyName: 'KLM',
-    Location: 'Maastricht',
-    distance: '3,7 km',
-    categories: [
-      {
-        name: '2.654,- per maand',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: '38 uur',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={20} />,
-      },
-    ],
-  },
-  {
-    id: '5',
-    title: 'Logistiek medewerker Postponement',
-    companyName: 'KLM',
-    Location: 'Maastricht',
-    distance: '3,7 km',
-    categories: [
-      {
-        name: '2.654,- per maand',
-        icon: <Heart size={16} />,
-      },
-      {
-        name: '38 uur',
-        icon: <Heart size={16} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={16} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={16} />,
-      },
-    ],
-  },
-  {
-    id: '6',
-    title: 'Logistiek medewerker Postponement',
-    companyName: 'KLM',
-    Location: 'Maastricht',
-    distance: '3,7 km',
-    categories: [
-      {
-        name: '2.654,- per maand',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: '38 uur',
-        icon: <Heart size={20} />,
-      },
-      {
-        name: 'MBO',
-        icon: <Heart size={20} />,
+        name: 'HBO',
+        icon: <GraduationCap size={20} />,
       },
     ],
   },
@@ -159,11 +87,12 @@ type ItemProps = {
 
 export function CardJobInfo() {
   return (
-    <XStack padding={23}>
+    <XStack paddingHorizontal={23}>
       <FlatList
         data={DATA}
         renderItem={({ item }) => <DemoCard {...item} />}
         keyExtractor={(item) => item.id}
+        scrollIndicatorInsets={{ right: 0 }} // Change position of scroll indicator 
       />
     </XStack>
   )
@@ -171,7 +100,6 @@ export function CardJobInfo() {
 
 export function DemoCard(props: CardProps & ItemProps) {
   const { id, title, companyName, Location, distance, categories } = props
-
   return (
     <Card
       borderRadius={5}
@@ -188,6 +116,7 @@ export function DemoCard(props: CardProps & ItemProps) {
           width={50}
           height={50}
           style={{
+            zIndex: 1,
             position: 'absolute',
             top: 0,
             right: 0,
@@ -198,15 +127,15 @@ export function DemoCard(props: CardProps & ItemProps) {
       <YStack>
         <XStack paddingVertical={5}>
           <Image
-            source={{ uri: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas' }}
+            source={{ uri: 'https://fakeimg.pl/100x100/cccccc/909090?text=Img&font=bebas' }}
             style={{ width: 100, height: 100 }}
             resizeMode="contain"
           />
         </XStack>
         <H4 style={{ fontSize: 26, paddingVertical: 5 }}>{title}</H4>
         <XStack paddingVertical={5}>
-          <Paragraph paddingHorizontal={2}>{companyName}</Paragraph>
-          <Paragraph paddingHorizontal={2}>{Location}</Paragraph>
+          <Paragraph paddingHorizontal={2}>{companyName},</Paragraph>
+          <Paragraph paddingHorizontal={2}>{Location},</Paragraph>
           <Paragraph paddingHorizontal={2}>{distance}</Paragraph>
         </XStack>
         <XStack paddingVertical={5}>
@@ -220,12 +149,12 @@ export function DemoCard(props: CardProps & ItemProps) {
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: '#FBE7D7',
-                      padding: 7, // padding van 7 aan alle kanten
+                      padding: 7,
                     }}
                   >
-                    {category.icon}
+                    {React.cloneElement(category.icon, { color: '#EB7002' })}
 
-                    <Paragraph paddingVertical={7} paddingHorizontal={6}>
+                    <Paragraph paddingVertical={7} paddingHorizontal={6} color="#EB7002">
                       {category.name}
                     </Paragraph>
                   </Stack>
