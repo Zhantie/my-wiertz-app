@@ -1,6 +1,6 @@
 import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack } from 'tamagui'
 import { ScrollView, View } from 'react-native'
-
+import { useColorScheme } from 'react-native'
 import { Platform } from 'react-native'
 
 import { FlatList } from 'react-native'
@@ -146,6 +146,8 @@ type ItemProps = {
 }
 
 export function CardJobInfo() {
+  const colorScheme = useColorScheme()
+  const backgroundColor = colorScheme === 'dark' ? '#333' : 'lightgrey'
   return (
     <>
       {/* Creeert een lijn waar de flatlist waar de scroll van de Flatlist komt */}
@@ -153,10 +155,12 @@ export function CardJobInfo() {
         borderTopWidth={1}
         borderColor={'transparent'}
         width={'94%'}
-        backgroundColor={'lightgray'}
+        backgroundColor={backgroundColor}
         shadowColor={'#000'}
-        shadowOpacity={0.5}
-        shadowRadius={10}
+        shadowOpacity={0.3}
+        shadowRadius={8}
+        shadowOffset={{ width: 0, height: 3 }}
+        zIndex={1}
       />
       {/* Creeert the FlatList die vanuit de DATA(Json) komt, en zet het om naar een lijst. */}
       <XStack paddingLeft={23}>
@@ -220,7 +224,7 @@ export function DemoCard(props: CardProps & ItemProps) {
             <XStack
               style={{
                 width: '100%',
-                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet 
+                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet
               }}
               gap={10}
             >

@@ -12,9 +12,6 @@ export function HomeScreen() {
 
   return (
     <YStack f={1} justifyContent="center" alignItems="center" marginTop={30}>
-      {/* <XStack>
-        <Button {...linkProps}>Link to user</Button>
-      </XStack> */}
       
     </YStack>
   )
