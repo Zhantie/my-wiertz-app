@@ -17,11 +17,9 @@ export default function HomeLayout() {
   }
   return (
     <Provider>
-      <MySafeAreaView edges={['top']} style={styles.fullScreen}>
-        <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack />
-        </ThemeProvider>
-      </MySafeAreaView>
+      <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack />
+      </ThemeProvider>
     </Provider>
   )
 }

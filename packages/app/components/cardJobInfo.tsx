@@ -1,5 +1,5 @@
 import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack } from 'tamagui'
-import { ScrollView } from 'react-native'
+import { ScrollView, View } from 'react-native'
 
 import { Platform } from 'react-native'
 
@@ -87,6 +87,50 @@ const DATA = [
       },
     ],
   },
+  {
+    id: '4',
+    title: 'Customer Service Manager',
+    imageLogo: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas',
+    companyName: 'HelloFresh',
+    Location: 'Maastricht',
+    distance: '2.1 km',
+    categories: [
+      {
+        name: '2.730,- per maand',
+        icon: <Euro size={20} />,
+      },
+      {
+        name: '38 uur',
+        icon: <Clock size={20} />,
+      },
+      {
+        name: 'HBO',
+        icon: <GraduationCap size={20} />,
+      },
+    ],
+  },
+  {
+    id: '5',
+    title: 'Customer Service Manager',
+    imageLogo: 'https://fakeimg.pl/100x100/cccccc/909090?font=bebas',
+    companyName: 'HelloFresh',
+    Location: 'Maastricht',
+    distance: '2.1 km',
+    categories: [
+      {
+        name: '2.730,- per maand',
+        icon: <Euro size={20} />,
+      },
+      {
+        name: '38 uur',
+        icon: <Clock size={20} />,
+      },
+      {
+        name: 'HBO',
+        icon: <GraduationCap size={20} />,
+      },
+    ],
+  },
 ]
 
 type ItemProps = {
@@ -103,17 +147,32 @@ type ItemProps = {
 
 export function CardJobInfo() {
   return (
-    <XStack paddingHorizontal={23}>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <DemoCard {...item} />}
-        keyExtractor={(item) => item.id}
-        scrollIndicatorInsets={{ right: 0 }} // Change position of scroll indicator
+    <>
+      {/* Creeert een lijn waar de flatlist waar de scroll van de Flatlist komt */}
+      <Stack
+        borderTopWidth={1}
+        borderColor={'transparent'}
+        width={'94%'}
+        backgroundColor={'lightgray'}
+        shadowColor={'#000'}
+        shadowOpacity={0.5}
+        shadowRadius={10}
       />
-    </XStack>
+      {/* Creeert the FlatList die vanuit de DATA(Json) komt, en zet het om naar een lijst. */}
+      <XStack paddingLeft={23}>
+        <FlatList
+          contentContainerStyle={{ paddingRight: 23, paddingBottom: 200 }}
+          data={DATA}
+          renderItem={({ item }) => <DemoCard {...item} />}
+          keyExtractor={(item) => item.id}
+          scrollIndicatorInsets={{ right: 0 }}
+        />
+      </XStack>
+    </>
   )
 }
 
+// De hele Card component die wordt gebruikt in de Flatlist
 export function DemoCard(props: CardProps & ItemProps) {
   const { id, title, companyName, Location, distance, categories } = props
   return (
@@ -126,6 +185,7 @@ export function DemoCard(props: CardProps & ItemProps) {
       position="relative"
       marginVertical={20}
     >
+      {/* kijkt of het Native app is zo ja heb je een like functie, zo niet geen */}
       {Platform.OS === 'android' || Platform.OS === 'ios' ? (
         <Button
           borderRadius={0}
@@ -160,18 +220,16 @@ export function DemoCard(props: CardProps & ItemProps) {
             <XStack
               style={{
                 width: '100%',
-                flexDirection: Platform.OS === 'web' ? 'row' : 'row',
-                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap',
-                
+                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet 
               }}
               gap={10}
             >
               {categories.map((category, index) => (
                 <XStack key={index}>
                   <Button
+                    borderRadius={0}
                     style={{
                       flexDirection: 'row',
-                      borderRadius: 0,
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: '#FBE7D7',
@@ -183,7 +241,6 @@ export function DemoCard(props: CardProps & ItemProps) {
                     <Paragraph
                       alignItems={'center'}
                       justifyContent={'center'}
-
                       paddingHorizontal={6}
                       color="#EB7002"
                     >
