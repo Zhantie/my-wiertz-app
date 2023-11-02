@@ -16,8 +16,6 @@ export function HomeScreen() {
         <Button {...linkProps}>Link to user</Button>
       </XStack> */}
       
-      <CardJobInfo />
-      
     </YStack>
   )
 }

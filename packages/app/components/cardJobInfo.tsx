@@ -29,6 +29,22 @@ const DATA = [
         name: 'MBO',
         icon: <GraduationCap size={20} />,
       },
+      {
+        name: '38 uur',
+        icon: <Clock size={20} />,
+      },
+      {
+        name: 'MBO',
+        icon: <GraduationCap size={20} />,
+      },
+      {
+        name: '38 uur',
+        icon: <Clock size={20} />,
+      },
+      {
+        name: 'MBO',
+        icon: <GraduationCap size={20} />,
+      },
     ],
   },
   {
@@ -92,7 +108,7 @@ export function CardJobInfo() {
         data={DATA}
         renderItem={({ item }) => <DemoCard {...item} />}
         keyExtractor={(item) => item.id}
-        scrollIndicatorInsets={{ right: 0 }} // Change position of scroll indicator 
+        scrollIndicatorInsets={{ right: 0 }} // Change position of scroll indicator
       />
     </XStack>
   )
@@ -102,6 +118,7 @@ export function DemoCard(props: CardProps & ItemProps) {
   const { id, title, companyName, Location, distance, categories } = props
   return (
     <Card
+      style={{ maxWidth: 700, width: '100%' }}
       borderRadius={5}
       padding={24}
       bordered
@@ -139,13 +156,22 @@ export function DemoCard(props: CardProps & ItemProps) {
           <Paragraph paddingHorizontal={2}>{distance}</Paragraph>
         </XStack>
         <XStack paddingVertical={5}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <XStack style={{ width: '100%', flexWrap: 'wrap' }} gap={10}>
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal={Platform.OS !== 'web'}>
+            <XStack
+              style={{
+                width: '100%',
+                flexDirection: Platform.OS === 'web' ? 'row' : 'row',
+                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap',
+                
+              }}
+              gap={10}
+            >
               {categories.map((category, index) => (
                 <XStack key={index}>
-                  <Stack
+                  <Button
                     style={{
                       flexDirection: 'row',
+                      borderRadius: 0,
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: '#FBE7D7',
@@ -154,10 +180,16 @@ export function DemoCard(props: CardProps & ItemProps) {
                   >
                     {React.cloneElement(category.icon, { color: '#EB7002' })}
 
-                    <Paragraph paddingVertical={7} paddingHorizontal={6} color="#EB7002">
+                    <Paragraph
+                      alignItems={'center'}
+                      justifyContent={'center'}
+
+                      paddingHorizontal={6}
+                      color="#EB7002"
+                    >
                       {category.name}
                     </Paragraph>
-                  </Stack>
+                  </Button>
                 </XStack>
               ))}
             </XStack>
