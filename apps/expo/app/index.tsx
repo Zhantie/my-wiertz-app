@@ -38,6 +38,7 @@ export default function Screen() {
 const HorizontalTabs = () => {
   const [selectedTab, setSelectedTab] = useState('tab1')
   const [isLoading, setIsLoading] = useState(false)
+  const MemoizedCardJobInfo = React.memo(CardJobInfo);
 
   useEffect(() => {
     if (selectedTab === 'tab1') {
@@ -45,7 +46,7 @@ const HorizontalTabs = () => {
       // Simuleer een netwerkverzoek
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 2000)
     }
   }, [selectedTab])
 
@@ -57,7 +58,6 @@ const HorizontalTabs = () => {
       defaultValue="tab1"
       orientation="horizontal"
       flexDirection="column"
-      borderRadius={20}
     >
       <Tabs.List
         separator={<Separator vertical />}
@@ -82,14 +82,14 @@ const HorizontalTabs = () => {
       </Tabs.List>
 
       {selectedTab === 'tab1' && (
-        <TabsContent justifyContent="center" alignItems="center" marginTop={20} value="tab1">
+        <TabsContent justifyContent="center" alignItems="center" marginTop={20} value="tab1" >
           {isLoading ? <Spinner size="small" /> : <CardJobInfo />}
         </TabsContent>
       )}
 
       {selectedTab === 'tab2' && (
         <TabsContent justifyContent="center" alignItems="center" value="tab2">
-          <H5>Connections</H5>
+          <H5>Favorieten</H5>
         </TabsContent>
       )}
 

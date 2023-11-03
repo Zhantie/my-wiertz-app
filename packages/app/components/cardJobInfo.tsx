@@ -1,4 +1,4 @@
-import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack } from 'tamagui'
+import { Button, Card, CardProps, H4, Image, Paragraph, XStack, YStack, H2, Stack } from 'tamagui'
 import { ScrollView, View } from 'react-native'
 import { useColorScheme } from 'react-native'
 import { Platform } from 'react-native'
@@ -6,7 +6,6 @@ import { Platform } from 'react-native'
 import { FlatList } from 'react-native'
 import React from 'react'
 import { Heart, Euro, Clock, GraduationCap } from '@tamagui/lucide-icons'
-import { Stack } from '@my/ui/src'
 
 const DATA = [
   {
@@ -180,16 +179,18 @@ export function DemoCard(props: CardProps & ItemProps) {
   const { id, title, companyName, Location, distance, categories } = props
   return (
     // Card component vanuit Tamagui
-    <Stack marginHorizontal={20} marginVertical={20}>
+    <Stack marginHorizontal={20} marginVertical={20} justifyContent='center' alignItems='center'>
       <Card
-        style={{ maxWidth: 700, width: '100%' }}
-        borderRadius={5}
+        style={{
+          maxWidth: 700,
+          width: '100%',
+          borderRadius: Platform.OS === 'ios' || Platform.OS === 'android' ? 5 : 0, // checkt of het Native app is zo ja dan 5, zo niet 0
+        }}
         padding={24}
         bordered
         borderWidth={2}
-        position="relative"
       >
-        {/* kijkt of het Native app is zo ja heb je een like functie, zo niet geen */}
+        {/* kijkt of het Native app is zo ja heb je een like functie, zo niet geen heart icon */}
         {Platform.OS === 'android' || Platform.OS === 'ios' ? (
           <Button
             borderRadius={0}
@@ -205,6 +206,7 @@ export function DemoCard(props: CardProps & ItemProps) {
             icon={<Heart size={25} color="#EB7002" />}
           ></Button>
         ) : null}
+
         <YStack>
           <XStack paddingVertical={5}>
             <Image
@@ -258,6 +260,25 @@ export function DemoCard(props: CardProps & ItemProps) {
           </XStack>
         </YStack>
       </Card>
+      {Platform.OS === 'web' || Platform.OS === 'windows' || Platform.OS === 'macos' ? ( // checkt of het web is zo ja dan laat het de onderstaande card zien, zo niet niet
+        <Card
+          style={{
+            maxWidth: 700,
+            width: '100%',
+            borderRadius: 0 
+          }}
+          padding={24}
+          bordered
+          borderWidth={2}
+        >
+          <YStack>
+            <H4 color="#EB7002">Proficiat! De opdrachtgever heeft jou uitgekozen voor deze job!</H4>
+            <Paragraph>
+              We nemen snel contact met je op om de administratieve zaken in orde te maken.
+            </Paragraph>
+          </YStack>
+        </Card>
+      ) : null}
     </Stack>
   )
 }
