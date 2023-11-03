@@ -163,13 +163,12 @@ export function CardJobInfo() {
         zIndex={1}
       />
       {/* Creeert the FlatList die vanuit de DATA(Json) komt, en zet het om naar een lijst. */}
-      <XStack paddingLeft={23}>
+      <XStack>
         <FlatList
-          contentContainerStyle={{ paddingRight: 23, paddingBottom: 200 }}
           data={DATA}
           renderItem={({ item }) => <DemoCard {...item} />}
           keyExtractor={(item) => item.id}
-          scrollIndicatorInsets={{ right: 0 }}
+          contentContainerStyle={{ paddingBottom: 250 }} // Is dit bad practice? Zorgt ervoor dat de Flatlist niet over de footer heen gaat.
         />
       </XStack>
     </>
@@ -180,83 +179,85 @@ export function CardJobInfo() {
 export function DemoCard(props: CardProps & ItemProps) {
   const { id, title, companyName, Location, distance, categories } = props
   return (
-    <Card
-      style={{ maxWidth: 700, width: '100%' }}
-      borderRadius={5}
-      padding={24}
-      bordered
-      borderWidth={2}
-      position="relative"
-      marginVertical={20}
-    >
-      {/* kijkt of het Native app is zo ja heb je een like functie, zo niet geen */}
-      {Platform.OS === 'android' || Platform.OS === 'ios' ? (
-        <Button
-          borderRadius={0}
-          backgroundColor=""
-          width={50}
-          height={50}
-          style={{
-            zIndex: 1,
-            position: 'absolute',
-            top: 0,
-            right: 0,
-          }}
-          icon={<Heart size={25} color="#EB7002" />}
-        ></Button>
-      ) : null}
-      <YStack>
-        <XStack paddingVertical={5}>
-          <Image
-            source={{ uri: 'https://fakeimg.pl/100x100/cccccc/909090?text=Img&font=bebas' }}
-            style={{ width: 100, height: 100 }}
-            resizeMode="contain"
-          />
-        </XStack>
-        <H4 style={{ fontSize: 26, paddingVertical: 5 }}>{title}</H4>
-        <XStack paddingVertical={5}>
-          <Paragraph paddingHorizontal={2}>{companyName},</Paragraph>
-          <Paragraph paddingHorizontal={2}>{Location},</Paragraph>
-          <Paragraph paddingHorizontal={2}>{distance}</Paragraph>
-        </XStack>
-        <XStack paddingVertical={5}>
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal={Platform.OS !== 'web'}>
-            <XStack
-              style={{
-                width: '100%',
-                flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet
-              }}
-              gap={10}
-            >
-              {categories.map((category, index) => (
-                <XStack key={index}>
-                  <Button
-                    borderRadius={0}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: '#FBE7D7',
-                      padding: 7,
-                    }}
-                  >
-                    {React.cloneElement(category.icon, { color: '#EB7002' })}
-
-                    <Paragraph
-                      alignItems={'center'}
-                      justifyContent={'center'}
-                      paddingHorizontal={6}
-                      color="#EB7002"
+    // Card component vanuit Tamagui
+    <Stack marginHorizontal={20} marginVertical={20}>
+      <Card
+        style={{ maxWidth: 700, width: '100%' }}
+        borderRadius={5}
+        padding={24}
+        bordered
+        borderWidth={2}
+        position="relative"
+      >
+        {/* kijkt of het Native app is zo ja heb je een like functie, zo niet geen */}
+        {Platform.OS === 'android' || Platform.OS === 'ios' ? (
+          <Button
+            borderRadius={0}
+            backgroundColor=""
+            width={50}
+            height={50}
+            style={{
+              zIndex: 1,
+              position: 'absolute',
+              top: 0,
+              right: 0,
+            }}
+            icon={<Heart size={25} color="#EB7002" />}
+          ></Button>
+        ) : null}
+        <YStack>
+          <XStack paddingVertical={5}>
+            <Image
+              source={{ uri: 'https://fakeimg.pl/100x100/cccccc/909090?text=Img&font=bebas' }}
+              style={{ width: 100, height: 100 }}
+              resizeMode="contain"
+            />
+          </XStack>
+          <H4 style={{ fontSize: 26, paddingVertical: 5 }}>{title}</H4>
+          <XStack paddingVertical={5}>
+            <Paragraph paddingHorizontal={2}>{companyName},</Paragraph>
+            <Paragraph paddingHorizontal={2}>{Location},</Paragraph>
+            <Paragraph paddingHorizontal={2}>{distance}</Paragraph>
+          </XStack>
+          <XStack paddingVertical={5}>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={Platform.OS !== 'web'}>
+              <XStack
+                style={{
+                  width: '100%',
+                  flexWrap: Platform.OS === 'web' ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet
+                }}
+                gap={10}
+              >
+                {categories.map((category, index) => (
+                  <XStack key={index}>
+                    <Button
+                      borderRadius={0}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#FBE7D7',
+                        padding: 7,
+                      }}
                     >
-                      {category.name}
-                    </Paragraph>
-                  </Button>
-                </XStack>
-              ))}
-            </XStack>
-          </ScrollView>
-        </XStack>
-      </YStack>
-    </Card>
+                      {React.cloneElement(category.icon, { color: '#EB7002' })}
+
+                      <Paragraph
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                        paddingHorizontal={6}
+                        color="#EB7002"
+                      >
+                        {category.name}
+                      </Paragraph>
+                    </Button>
+                  </XStack>
+                ))}
+              </XStack>
+            </ScrollView>
+          </XStack>
+        </YStack>
+      </Card>
+    </Stack>
   )
 }
