@@ -9,6 +9,7 @@ import {
   TabsContentProps,
   Spinner,
   XStack,
+  Button,
 } from 'tamagui'
 
 import MySafeAreaView from '../shared/Wrap-components/MySafeAreaView'
@@ -38,7 +39,7 @@ export default function Screen() {
 const HorizontalTabs = () => {
   const [selectedTab, setSelectedTab] = useState('tab1')
   const [isLoading, setIsLoading] = useState(false)
-  const MemoizedCardJobInfo = React.memo(CardJobInfo);
+  const MemoizedCardJobInfo = React.memo(CardJobInfo)
 
   useEffect(() => {
     if (selectedTab === 'tab1') {
@@ -81,8 +82,8 @@ const HorizontalTabs = () => {
         </XStack>
       </Tabs.List>
 
-      {selectedTab === 'tab1' && (
-        <TabsContent justifyContent="center" alignItems="center" marginTop={20} value="tab1" >
+      {selectedTab === 'tab1' && ( // checkt of het tab1 is zo ja dan laat het de onderstaande card zien, zo niet niet
+        <TabsContent justifyContent="center" alignItems="center" marginTop={20} value="tab1">
           {isLoading ? <Spinner size="small" /> : <CardJobInfo />}
         </TabsContent>
       )}

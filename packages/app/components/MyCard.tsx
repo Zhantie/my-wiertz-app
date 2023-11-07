@@ -6,6 +6,7 @@ import { Platform } from 'react-native'
 import { FlatList } from 'react-native'
 import React from 'react'
 import { Heart, Euro, Clock, GraduationCap } from '@tamagui/lucide-icons'
+import MyCardBottom from './MyCardBottom'
 
 const DATA = [
   {
@@ -144,46 +145,17 @@ type ItemProps = {
   }[]
 }
 
+const isWeb = Platform.OS === 'web' || Platform.OS === 'windows' || Platform.OS === 'macos'
+const isNative = Platform.OS === 'ios' || Platform.OS === 'android'
 
-export function CardJobInfo() {
-  const colorScheme = useColorScheme()
-  const backgroundColor = colorScheme === 'dark' ? '#333' : 'lightgrey'
-  return (
-    <>
-      {/* Creeert een lijn waar de flatlist waar de scroll van de Flatlist komt */}
-      <Stack
-        borderTopWidth={1}
-        borderColor={'transparent'}
-        width={isNative ? '95%' : '0'}
-        backgroundColor={backgroundColor}
-        shadowColor={'#000'}
-        shadowOpacity={0.3}
-        shadowRadius={8}
-        shadowOffset={{ width: 0, height: 3 }}
-        zIndex={1}
-      />
-      {/* Creeert the FlatList die vanuit de DATA(Json) komt, en zet het om naar een lijst. */}
-      <XStack>
-        <FlatList
-          data={DATA}
-          renderItem={({ item }) => <DemoCard {...item} />}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingBottom: 250 }} // Is dit bad practice? Zorgt ervoor dat de Flatlist niet over de footer heen gaat.
-        />
-      </XStack>
-    </>
-  )
-}
-
-const isWeb = Platform.OS === 'web' || Platform.OS === 'windows' || Platform.OS === 'macos';
-const isNative = Platform.OS === 'ios' || Platform.OS === 'android';
-
+// type demoCardProps is een eigen props kan combineren met de CardProps en itemProps van Tamagui
+type DemoCardProps = { isFirstItem?: boolean; isLastItem?: boolean } & ItemProps & CardProps
 // De hele Card component die wordt gebruikt in de Flatlist
-export function DemoCard(props: CardProps & ItemProps) {
-  const { id, title, companyName, Location, distance, categories } = props
+export function DemoCard(props: DemoCardProps) {
+  const { id, title, companyName, Location, distance, categories, isFirstItem, isLastItem } = props
   return (
     // Card component vanuit Tamagui
-    <Stack marginHorizontal={20} marginVertical={20} justifyContent='center' alignItems='center'>
+    <Stack marginHorizontal={20} marginVertical={20} justifyContent="center" alignItems="center">
       <Card
         style={{
           maxWidth: 700,
@@ -230,7 +202,7 @@ export function DemoCard(props: CardProps & ItemProps) {
               <XStack
                 style={{
                   width: '100%',
-                  flexWrap: isWeb ? 'wrap' : 'nowrap' // checkt wanneer web is, dan wrap, anders niet
+                  flexWrap: isWeb ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet
                 }}
                 gap={10}
               >
@@ -265,25 +237,7 @@ export function DemoCard(props: CardProps & ItemProps) {
         </YStack>
       </Card>
 
-      {isWeb ? ( // checkt of het web is zo ja dan laat het de onderstaande card zien, zo niet niet
-        <Card
-          style={{
-            maxWidth: 700,
-            width: '100%',
-            borderRadius: 0 
-          }}
-          padding={24}
-          bordered
-          borderWidth={2}
-        >
-          <YStack>
-            <H4 color="#EB7002">Proficiat! De opdrachtgever heeft jou uitgekozen voor deze job!</H4>
-            <Paragraph>
-              We nemen snel contact met je op om de administratieve zaken in orde te maken.
-            </Paragraph>
-          </YStack>
-        </Card>
-      ) : null}
+      {isWeb && <MyCardBottom />}
     </Stack>
   )
 }
