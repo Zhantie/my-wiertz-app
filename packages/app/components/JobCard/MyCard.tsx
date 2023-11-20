@@ -195,11 +195,11 @@ export function DemoCard(props: DemoCardProps & ItemProps) {
                   <Paragraph paddingHorizontal={2}>{item.distance}</Paragraph>
                 </XStack>
                 <XStack paddingVertical={5}>
-                  <ScrollView showsHorizontalScrollIndicator={false} horizontal={isNative}>
+                  <ScrollView showsHorizontalScrollIndicator={false} horizontal={isNative}> 
                     <XStack
                       style={{
                         width: '100%',
-                        flexWrap: isWeb ? 'wrap' : 'nowrap', // checkt wanneer web is, dan wrap, anders niet
+                        flexWrap: 'wrap', 
                       }}
                       gap={10}
                     >
