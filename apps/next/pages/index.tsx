@@ -10,7 +10,7 @@ export default function Page() {
       <Head>
         <title>Home</title>
       </Head>
-       <DemoCard id={''} title={''} companyName={''} Location={''} distance={''} categories={[]} isChosenCard={true} isJobCardInfo={false}  />
+       <DemoCard isLikeButton={true} isChosenCard={true} isJobCardInfo={false}  />
     </> 
   )
 }

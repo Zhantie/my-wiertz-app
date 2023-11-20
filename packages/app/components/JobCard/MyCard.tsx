@@ -6,6 +6,7 @@ import { FlatList } from 'react-native'
 import React from 'react'
 import { Heart, Euro, Clock, GraduationCap } from '@tamagui/lucide-icons'
 import MyCardBottom from '../JobCard/MyCardBottom'
+import MyLikeButton from './MyLikeButton'
 
 const DATA = [
   {
@@ -137,12 +138,12 @@ const DATA = [
 ]
 
 type ItemProps = {
-  id: string
-  title: string
-  companyName: string
-  Location: string
-  distance: string
-  categories: {
+  id?: string
+  title?: string
+  companyName?: string
+  Location?: string
+  distance?: string
+  categories?: {
     name: string
     icon: any
   }[]
@@ -153,7 +154,11 @@ const isWeb = Platform.OS === 'web' || Platform.OS === 'windows' || Platform.OS 
 const isNative = Platform.OS === 'ios' || Platform.OS === 'android'
 
 // type demoCardProps is een eigen props kan combineren met de CardProps en itemProps van Tamagui
-type DemoCardProps = { isChosenCard?: boolean; isJobCardInfo?: boolean } & CardProps
+type DemoCardProps = {
+  isChosenCard?: boolean
+  isJobCardInfo?: boolean
+  isLikeButton?: boolean
+} & CardProps
 
 // De hele Card component die wordt gebruikt in de Flatlist
 export function DemoCard(props: DemoCardProps & ItemProps) {
@@ -166,37 +171,24 @@ export function DemoCard(props: DemoCardProps & ItemProps) {
         renderItem={({ item }) => (
           <Stack marginVertical={24}>
             <Card
-              borderRadius={isNative ? 0 : 0}
+              borderRadius={0}
               maxWidth={700}
               padding={24}
               bordered
               borderWidth={2}
             >
-              {/* {isNative ? (
-                <Button
-                  borderRadius={0}
-                  backgroundColor=""
-                  width={50}
-                  height={50}
-                  style={{
-                    zIndex: 1,
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                  }}
-                  icon={<Heart size={25} color="#EB7002" />}
-                ></Button>
-              ) : null} */}
-
               <YStack>
-                <XStack paddingVertical={5}>
+                <XStack justifyContent='space-between' paddingVertical={5}>
                   <Image
                     source={{ uri: item.imageLogo }}
                     style={{ width: 100, height: 100 }}
                     resizeMode="contain"
                   />
+                  {props.isLikeButton ? <MyLikeButton /> : null}
                 </XStack>
+
                 <H4 style={{ fontSize: 26, paddingVertical: 5 }}>{item.title}</H4>
+                
                 <XStack paddingVertical={5}>
                   <Paragraph paddingHorizontal={2}>{item.companyName}</Paragraph>
                   <Paragraph paddingHorizontal={2}>{item.Location}</Paragraph>
@@ -241,7 +233,7 @@ export function DemoCard(props: DemoCardProps & ItemProps) {
                 </XStack>
               </YStack>
             </Card>
-            {item.selected && props.isChosenCard ? <MyCardBottom /> : null}   
+            {item.selected && props.isChosenCard ? <MyCardBottom /> : null}
           </Stack>
         )}
       />
