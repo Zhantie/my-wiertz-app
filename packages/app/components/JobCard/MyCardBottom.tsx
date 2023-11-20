@@ -13,6 +13,7 @@ const MyCardBottom = () => {
       borderWidth={2}
       style={{borderTopWidth: 0}} 
     >
+      
       <YStack>
         <H4 color="#EB7002">Proficiat! De opdrachtgever heeft jou uitgekozen voor deze job!</H4>
         <Paragraph>
