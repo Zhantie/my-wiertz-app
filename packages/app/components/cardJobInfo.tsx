@@ -144,7 +144,6 @@ type ItemProps = {
   }[]
 }
 
-
 export function CardJobInfo() {
   const colorScheme = useColorScheme()
   const backgroundColor = colorScheme === 'dark' ? '#333' : 'lightgrey'

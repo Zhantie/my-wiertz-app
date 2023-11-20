@@ -1,4 +1,4 @@
-import { CardJobInfo } from 'app/components/cardJobInfo'
+import { DemoCard } from 'app/components/JobCard/MyCard'
 import { Stack } from 'expo-router'
 import {
   Text,
@@ -39,7 +39,7 @@ export default function Screen() {
 const HorizontalTabs = () => {
   const [selectedTab, setSelectedTab] = useState('tab1')
   const [isLoading, setIsLoading] = useState(false)
-  const MemoizedCardJobInfo = React.memo(CardJobInfo)
+  const MemoizedCardJobInfo = React.memo(DemoCard)
 
   useEffect(() => {
     if (selectedTab === 'tab1') {
@@ -84,7 +84,7 @@ const HorizontalTabs = () => {
 
       {selectedTab === 'tab1' && ( // checkt of het tab1 is zo ja dan laat het de onderstaande card zien, zo niet niet
         <TabsContent justifyContent="center" alignItems="center" marginTop={20} value="tab1">
-          {isLoading ? <Spinner size="small" /> : <CardJobInfo />}
+          <DemoCard isChosenCard={true} isJobCardInfo={false} id={''} title={''} companyName={''} Location={''} distance={''} categories={[]} />
         </TabsContent>
       )}
 
