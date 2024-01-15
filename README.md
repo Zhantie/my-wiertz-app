@@ -30,7 +30,7 @@ Het doel van deze app was om te kijken wat de mogelijkheden waren omtrend compon
 - package.json
 - tsconfig.base.json
 
-
+Zoals te zien is in de folderstructuur van deze Monorepo, zijn er twee configuratiebestanden beschikbaar vanuit Tamagui, namelijk een `- Expo` en een `- Next` bestand. Dit betekent dat je binnen een repository (Monorepo) zowel een mobiele applicatie als een website (PWA) kunt ontwikkelen. Echter, het gebruik van alleen een Monorepo geeft geen antwoord op de hoofdvraag vanuit Freshheads. Hiervoor komt Tamagui in beeld. In eerdere uitleg heb ik al gesproken over Tamagui. Kort gezegd is Tamagui een UI-library waarbij de componenten gedeeld kunnen worden voor zowel native apps als websites.
 
 
 
