@@ -90,7 +90,11 @@ Creëren van verschillende componenten is dat het ontleden van je component een 
  isJobCardInfo?: boolean
  isLikeButton?: boolean
 ```
-Terugkomend op het creëren van verschillende componenten: ik geef deze types (eigenschappen) mee wanneer mijn component in de app of web wordt weergegeven. Als ik bijvoorbeeld het type ``isChosenCard?` niet in de app wil laten verschijnen, kan ik eenvoudig dit type verwijderen binnen het Expo-bestand. Door deze benadering blijft je code overzichtelijk en gemakkelijk overdraagbaar. Bovendien is het handig voor kleine aanpassingen op beide platforms. Stel dat je de like-functie ook binnen de webversie wilt hebben, dan is het eenvoudig te realiseren door het type `isLikeButton` mee te geven.
+Terugkomend op het creëren van verschillende componenten: ik geef deze types (eigenschappen) mee wanneer mijn component in de app of web wordt weergegeven. Als ik bijvoorbeeld het type `isChosenCard?` niet in de app wil laten verschijnen, kan ik eenvoudig dit type verwijderen binnen het Expo-bestand. Door deze benadering blijft je code overzichtelijk en gemakkelijk overdraagbaar. Bovendien is het handig voor kleine aanpassingen op beide platforms. Stel dat je de like-functie ook binnen de webversie wilt hebben, dan is het eenvoudig te realiseren door het type `isLikeButton` mee te geven.
+
+## Resultaat
+
+![Web-component](https://github.com/Zhantie/my-wiertz-app/assets/74553048/ca7b5b60-2902-472f-ae1b-7a796f7b77c5)
 
 
 
