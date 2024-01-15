@@ -96,7 +96,7 @@ Terugkomend op het creëren van verschillende componenten: ik geef deze types (e
 
 ![Web-component](https://github.com/Zhantie/my-wiertz-app/assets/74553048/ca7b5b60-2902-472f-ae1b-7a796f7b77c5)
 
-
+https://github.com/Zhantie/my-wiertz-app/assets/74553048/a07067df-22bc-4773-af62-83c077ed0778
 
 
 
