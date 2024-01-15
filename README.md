@@ -37,7 +37,9 @@ Zoals te zien is in de folderstructuur van deze Monorepo, zijn er twee configura
 In de map `JobCard` heb ik mijn component oorspronkelijk ontwikkeld. In deze map kun je zien dat ik dit component heb opgesplitst in drie verschillende componenten. `-  MyCard.tsx` ,`- MyCardBottom.tsx`, `MyLikeButton.tsx`. Waarom ik dit heb gedaan, zal ik later in dit document uitleggen.
 
 ## Component
-![Group 62](https://github.com/Zhantie/my-wiertz-app/assets/74553048/718a0b3e-513e-40fc-bff2-21cbebf0e5fd)
+![Group 63](https://github.com/Zhantie/my-wiertz-app/assets/74553048/3ba45b80-abea-4974-9f69-b44e4f82f5e0)
+
+
 
 
 
