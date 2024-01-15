@@ -14,7 +14,9 @@ Het doel van deze app was om te kijken wat de mogelijkheden waren omtrend compon
   - app
     - components
       - JobCard
-        - cardJobInfo.tsx
+        - MyCard.tsx
+        - MyCardBottom.tsx
+        - MyLikeButtom.tsx
     - features
     - provider
 - .gitignore
